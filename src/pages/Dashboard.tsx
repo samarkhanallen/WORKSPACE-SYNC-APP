@@ -94,7 +94,7 @@ export default function Dashboard() {
             className="brutal-card p-8 flex items-center justify-between"
           >
             <div>
-              <p className="technical-label">{stat.label}</p>
+              <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{stat.label}</p>
               <h3 className="mt-2 text-3xl font-bold tracking-tight">{stat.value}</h3>
             </div>
             <div className={stat.color}>
@@ -123,7 +123,7 @@ export default function Dashboard() {
                     <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">PJ-{project.id.slice(0, 4)}</span>
                     <ChevronRight size={16} className="text-gray-300 group-hover:text-black transition-transform group-hover:translate-x-1" />
                   </div>
-                  <h3 className="font-bold text-lg leading-tight group-hover:text-blue-500 transition-colors uppercase italic">{project.name}</h3>
+                  <h3 className="font-bold text-lg leading-tight group-hover:text-blue-500 transition-colors uppercase">{project.name}</h3>
                   <p className="text-xs text-gray-400 mt-2 line-clamp-2">{project.description}</p>
                 </div>
                 <div className="mt-6 pt-4 border-t border-gray-50 flex items-center justify-between">

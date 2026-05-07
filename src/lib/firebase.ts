@@ -1,11 +1,37 @@
-import { initializeApp } from 'firebase/app';
+import { initializeApp, getApp, getApps } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
-import firebaseConfig from '../../firebase-applet-config.json';
+import { getFirestore, doc, getDocFromServer } from 'firebase/firestore';
+import firebaseConfigManual from '../../firebase-applet-config.json';
 
-const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app, firebaseConfig.firestoreDatabaseId);
+// Use environment variables if available (for external deployments like Railway/Vercel)
+// Otherwise fallback to the local config file
+const config = {
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || firebaseConfigManual.apiKey,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || firebaseConfigManual.authDomain,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || firebaseConfigManual.projectId,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || firebaseConfigManual.storageBucket,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || firebaseConfigManual.messagingSenderId,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID || firebaseConfigManual.appId,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID || firebaseConfigManual.measurementId,
+  firestoreDatabaseId: import.meta.env.VITE_FIREBASE_DATABASE_ID || firebaseConfigManual.firestoreDatabaseId || '(default)'
+};
+
+const app = getApps().length === 0 ? initializeApp(config) : getApp();
+export const db = getFirestore(app, config.firestoreDatabaseId);
 export const auth = getAuth(app);
+
+// Connectivity check for troubleshooting
+async function testConnection() {
+  try {
+    await getDocFromServer(doc(db, '_connection_test_', 'ping'));
+    console.log("Firebase connection verified.");
+  } catch (error) {
+    if (error instanceof Error && error.message.includes('offline')) {
+      console.warn("Firebase client appears to be offline. Verify your API key and Internet connection.");
+    }
+  }
+}
+testConnection();
 
 export enum OperationType {
   CREATE = 'create',
