@@ -1,20 +1,31 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+Sync-Eazy
 
-# Run and deploy your AI Studio app
+Sync-Eazy is a smart and user-friendly workspace management application designed to help individuals and teams organize tasks, manage workflows, and improve productivity in one place.
 
-This contains everything you need to run your app locally.
+Features
+Task creation and management
+Real-time task status updates
+Organized workspace dashboard
+Simple and responsive UI
+Team collaboration support
+Secure data handling
+Tech Stack
+Frontend: React.js, HTML, CSS, JavaScript
+Backend: Node.js, Express.js
+Database: Firebase / Firestore
+Tools: Vite, GitHub
+Project Objective
 
-View your app in AI Studio: https://ai.studio/apps/b06d58b0-5049-4ac9-8d0e-77eec2833ac8
+The main goal of Sync-Eazy is to simplify task management and workspace coordination by providing an easy-to-use platform for tracking daily activities and project progress.
 
-## Run Locally
-
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+Usage
+Create and organize tasks
+Monitor project progress
+Manage daily workflow efficiently
+Collaborate with team members
+Future Enhancements
+Authentication system
+Notification and reminder features
+File sharing support
+Advanced analytics dashboard
+Dark mode support
