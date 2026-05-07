@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+:root {
+  --bg: #F0F0F0;
+  --bg-dark: #121212;
+  --accent: #000000;
+  --accent-alt: #FF5C00; /* Sharp safety orange */
+  --border: #E0E0E0;
+  --border-heavy: #000000;
+}
+
+body {
+  @apply font-sans antialiased text-[#121212] bg-[#F0F0F0];
+}
+
+/* Technical scannable column headers */
+.technical-label {
+  @apply font-mono text-[10px] font-bold uppercase tracking-widest text-gray-400;
+}
+
+/* Sharp box styling */
+.brutal-card {
+  @apply bg-white border border-gray-200 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none;
+}
+
+.brutal-card-heavy {
+  @apply bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none;
+}
+
+.brutal-btn {
+  @apply inline-flex items-center justify-center gap-2 px-5 py-3 font-mono text-xs font-bold uppercase tracking-widest bg-black text-white border-2 border-black transition-all hover:bg-white hover:text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-[#E0E0E0];
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-black border-2 border-[#E0E0E0];
+}
