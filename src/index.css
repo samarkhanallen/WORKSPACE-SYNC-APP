@@ -16,25 +16,21 @@
 }
 
 body {
-  @apply font-sans antialiased text-[#121212] bg-[#F0F0F0];
+  @apply font-sans antialiased text-gray-900 bg-[#fbfbfb];
 }
 
-/* Technical scannable column headers */
+/* Simple scannable labels */
 .technical-label {
-  @apply font-mono text-[10px] font-bold uppercase tracking-widest text-gray-400;
+  @apply text-[11px] font-semibold uppercase tracking-wider text-gray-400;
 }
 
-/* Sharp box styling */
-.brutal-card {
-  @apply bg-white border border-gray-200 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none;
-}
-
-.brutal-card-heavy {
-  @apply bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none;
+/* Modern card styling */
+.brutal-card, .brutal-card-heavy {
+  @apply bg-white border border-gray-100 shadow-sm transition-all hover:shadow-md;
 }
 
 .brutal-btn {
-  @apply inline-flex items-center justify-center gap-2 px-5 py-3 font-mono text-xs font-bold uppercase tracking-widest bg-black text-white border-2 border-black transition-all hover:bg-white hover:text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none;
+  @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 font-sans text-sm font-semibold bg-black text-white rounded-xl transition-all hover:bg-gray-800 active:scale-[0.98] shadow-sm;
 }
 
 ::-webkit-scrollbar {

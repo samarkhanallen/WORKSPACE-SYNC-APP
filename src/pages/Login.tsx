@@ -26,60 +26,57 @@ export default function Login() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[#F0F0F0] p-6">
+    <div className="flex min-h-screen items-center justify-center bg-[#fbfbfb] p-6">
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="w-full max-w-lg brutal-card-heavy p-12 bg-white"
+        className="w-full max-w-md bg-white p-12 border border-gray-100 shadow-xl rounded-3xl"
       >
-        <div className="space-y-6">
-          <div className="flex items-center gap-4 border-b-2 border-black pb-8">
-            <div className="flex h-16 w-16 items-center justify-center bg-black text-white outline outline-8 outline-black/5">
+        <div className="space-y-8">
+          <div className="text-center space-y-4">
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-black text-white shadow-lg shadow-black/20">
               <LogIn size={32} />
             </div>
             <div>
-              <h1 className="font-mono text-4xl font-black tracking-tighter uppercase leading-none">
+              <h1 className="text-3xl font-bold tracking-tight text-gray-900 leading-none">
                 SYNC-EAZY
               </h1>
-              <p className="font-mono text-[10px] font-bold text-[#FF5C00] tracking-[0.2em] mt-2 uppercase">
-                HIGH_PERFORMANCE_TASK_KERNEL
+              <p className="text-xs font-semibold text-gray-400 mt-2 uppercase tracking-widest">
+                Simple Task Management
               </p>
             </div>
           </div>
 
-          <div className="py-8 space-y-6">
-            <p className="font-mono text-xs text-gray-500 uppercase leading-relaxed">
-              [SYSTEM_MESSAGE]: PLEASE AUTHENTICATE TO ACCESS SECURE WORKSPACE. 
-              G-AUTH_REQUIRED_FOR_ROOT_TENANT_VERIFICATION.
+          <div className="py-2 space-y-6">
+            <p className="text-sm text-center text-gray-500 leading-relaxed max-w-[280px] mx-auto">
+              Welcome back. Please sign in with your Google account to access your tasks.
             </p>
             
             <button
               onClick={handleLogin}
               disabled={loading}
-              className="brutal-btn w-full py-5 text-sm"
+              className="brutal-btn w-full py-4 rounded-2xl bg-black text-white font-bold hover:bg-gray-800 transition-all flex items-center justify-center gap-3"
             >
               {loading ? (
                 <div className="h-5 w-5 animate-spin rounded-full border-2 border-white/20 border-t-white" />
               ) : (
-                <div className="flex items-center gap-4">
-                  <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" className="h-5 w-5 invert transition-all" />
-                  INIT_SECURE_LOGIN_v2
-                </div>
+                <>
+                  <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" className="h-5 w-5" />
+                  Sign in with Google
+                </>
               )}
             </button>
             {error && (
-              <div className="p-4 bg-red-50 border-2 border-red-500 text-red-600 font-mono text-[10px] font-bold uppercase">
-                CRITICAL_AUTH_FAILURE: {error}
+              <div className="p-4 bg-red-50 rounded-xl text-red-600 text-xs font-bold text-center border border-red-100">
+                Error: {error}
               </div>
             )}
           </div>
 
-          <div className="border-t-2 border-black pt-8 flex items-center justify-between">
-            <div className="flex flex-col">
-              <span className="font-mono text-[9px] font-bold text-gray-400">ENCRYPTION: AES-256</span>
-              <span className="font-mono text-[9px] font-bold text-gray-400 italic">SECURED_BY_FIREBASE_CORE</span>
-            </div>
-            <div className="h-6 w-1 bg-[#FF5C00]"></div>
+          <div className="pt-8 border-t border-gray-50 text-center">
+            <span className="text-[10px] font-bold text-gray-300 uppercase tracking-widest italic">
+              Built by Samar Khan
+            </span>
           </div>
         </div>
       </motion.div>

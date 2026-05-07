@@ -31,32 +31,32 @@ export default function Layout() {
   ];
 
   return (
-    <div className="flex h-screen bg-[#F0F0F0] text-gray-900 overflow-hidden font-sans">
-      {/* Sidebar - Technical Grid Rail */}
-      <aside className="w-64 flex-col hidden md:flex border-r-2 border-black bg-white">
-        <div className="p-8 border-b-2 border-black">
+    <div className="flex h-screen bg-[#fbfbfb] text-gray-900 overflow-hidden font-sans">
+      {/* Sidebar - Clean & Modern */}
+      <aside className="w-64 flex-col hidden md:flex border-r border-gray-100 bg-white shadow-sm">
+        <div className="p-8">
           <div className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center bg-[#FF5C00] text-white">
-              <CheckCircle2 size={28} />
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-black text-white">
+              <CheckCircle2 size={24} />
             </div>
             <div className="flex flex-col">
-              <span className="font-mono text-xl font-black tracking-tighter leading-none">SYNC-EAZY</span>
-              <span className="font-mono text-[9px] font-bold text-gray-400 tracking-[0.2em] mt-1">BY SAMAR KHAN</span>
+              <span className="text-xl font-bold tracking-tight leading-none text-black">SYNC-EAZY</span>
+              <span className="text-[10px] font-bold text-gray-400 tracking-wider mt-1">BY SAMAR KHAN</span>
             </div>
           </div>
         </div>
 
-        <nav className="flex-1 px-4 py-8 space-y-2">
+        <nav className="flex-1 px-4 py-4 space-y-1">
           {navItems.map((item) => (
             <NavLink
               key={item.name}
               to={item.path}
               className={({ isActive }) =>
                 cn(
-                  'flex items-center gap-4 px-6 py-4 font-mono text-xs font-bold tracking-widest transition-all border-2 border-transparent',
+                  'flex items-center gap-3 px-4 py-3 text-sm font-semibold rounded-xl transition-all',
                   isActive
-                    ? 'bg-black text-white border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)]'
-                    : 'text-gray-400 hover:text-black hover:border-black/10'
+                    ? 'bg-black text-white shadow-md shadow-black/10'
+                    : 'text-gray-400 hover:text-black hover:bg-gray-50'
                 )
               }
             >
@@ -66,14 +66,14 @@ export default function Layout() {
           ))}
         </nav>
 
-        <div className="p-6 border-t-2 border-black">
-          <div className="flex items-center gap-4 bg-gray-50 p-4 border border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-            <div className="h-10 w-10 bg-black flex items-center justify-center text-white font-mono font-bold">
+        <div className="p-6 border-t border-gray-50">
+          <div className="flex items-center gap-3 bg-gray-50 p-4 rounded-2xl">
+            <div className="h-9 w-9 bg-black rounded-full flex items-center justify-center text-white font-bold">
               {profile?.displayName?.[0] || 'U'}
             </div>
             <div className="flex-1 overflow-hidden">
-              <p className="truncate font-mono text-[10px] font-bold uppercase tracking-tight">{profile?.displayName}</p>
-              <p className="truncate font-mono text-[9px] text-[#FF5C00] font-black uppercase tracking-widest">{profile?.role}</p>
+              <p className="truncate text-xs font-bold">{profile?.displayName}</p>
+              <p className="truncate text-[10px] text-gray-400 font-medium capitalize">{profile?.role}</p>
             </div>
             <button
               onClick={handleSignOut}
@@ -88,32 +88,28 @@ export default function Layout() {
 
       {/* Main Content */}
       <main className="flex-1 flex flex-col overflow-hidden">
-        <header className="h-20 flex items-center justify-between px-10 bg-white border-b-2 border-black z-10">
+        <header className="h-20 flex items-center justify-between px-10 bg-white/50 backdrop-blur-md border-b border-gray-100 z-10">
           <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-[#FF5C00] animate-pulse"></div>
-            <h2 className="font-mono text-[10px] font-bold text-gray-400 uppercase tracking-[0.3em]">
-              SYSTEM READY // {profile?.role === 'admin' ? 'ROOT_ACCESS' : 'USER_SESSION'}
+            <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+            <h2 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+              WORKSPACE ACTIVE // {profile?.role === 'admin' ? 'ADMIN ACCESS' : 'MEMBER ACCESS'}
             </h2>
           </div>
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2 px-3 py-1 bg-gray-100 border border-gray-200">
-              <Clock size={12} className="text-gray-400" />
-              <span className="font-mono text-[10px] font-bold text-gray-500">UT-08:00</span>
-            </div>
+          <div className="flex items-center gap-4">
             <div className="relative">
-              <div className="p-2 border-2 border-black hover:bg-gray-100 cursor-pointer transition-colors">
-                <AlertCircle size={20} />
+              <div className="p-2 hover:bg-gray-100 rounded-xl cursor-pointer transition-colors">
+                <AlertCircle size={20} className="text-gray-400" />
               </div>
-              <span className="absolute -top-1 -right-1 h-3 w-3 bg-[#FF5C00] border-2 border-white"></span>
+              <span className="absolute top-1 right-1 h-2 w-2 bg-[#FF5C00] rounded-full border-2 border-white"></span>
             </div>
           </div>
         </header>
 
         <div className="flex-1 overflow-y-auto overflow-x-hidden p-10">
           <motion.div
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
           >
             <Outlet />
           </motion.div>

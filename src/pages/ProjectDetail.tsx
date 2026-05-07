@@ -114,39 +114,40 @@ export default function ProjectDetail() {
 
   return (
     <div className="space-y-12">
-      {/* Header - Technical Command */}
-      <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 border-l-4 border-[#FF5C00] pl-8">
-        <div className="flex items-start gap-6">
+      {/* Header */}
+      <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 pb-6 border-b border-gray-100">
+        <div className="flex items-start gap-4">
           <button
             onClick={() => navigate('/')}
-            className="mt-1 p-3 border-2 border-black hover:bg-black hover:text-white transition-all shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px]"
+            className="mt-1 p-3 bg-white border border-gray-100 rounded-xl text-gray-400 hover:text-black hover:shadow-md transition-all"
           >
             <ArrowLeft size={20} />
           </button>
           <div>
-            <div className="flex items-center gap-4">
-              <h1 className="text-4xl font-black tracking-tighter uppercase">{project?.name}</h1>
-              <div className="p-1 border border-black/10">
-                <Settings size={14} className="text-gray-300" />
+            <div className="flex items-center gap-3">
+              <h1 className="text-3xl font-bold tracking-tight text-gray-900 leading-none">{project?.name}</h1>
+              <div className="p-1 text-gray-200">
+                <Settings size={14} />
               </div>
             </div>
-            <div className="mt-3 flex items-center gap-6">
-              <p className="font-mono text-[10px] text-gray-500 uppercase tracking-widest bg-gray-100 px-2 py-1 border border-gray-200">
-                DESC_{project?.description?.slice(0, 40)}...
+            <div className="mt-3 flex items-center gap-4">
+              <p className="text-xs text-gray-400 font-medium italic">
+                {project?.description}
               </p>
+              <div className="h-4 w-[1px] bg-gray-200"></div>
               <div className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 bg-[#FF5C00] rounded-full"></div>
-                <span className="font-mono text-[9px] font-bold text-gray-400 uppercase tracking-[0.2em]">SYNC_ACTIVE</span>
+                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></div>
+                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Real-time Sync</span>
               </div>
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-6">
-          <div className="flex -space-x-3">
+        <div className="flex items-center gap-4">
+          <div className="flex -space-x-2">
             {project?.members.slice(0, 4).map((m, i) => (
               <div key={m} className={cn(
-                "h-10 w-10 border-2 border-black flex items-center justify-center text-xs font-black font-mono shadow-[2px_2px_0px_0px_rgba(0,0,0,0.2)]",
-                i % 2 === 0 ? "bg-white text-black" : "bg-black text-white"
+                "h-9 w-9 rounded-full border-2 border-white flex items-center justify-center text-[10px] font-bold shadow-sm",
+                i % 2 === 0 ? "bg-black text-white" : "bg-gray-100 text-black"
               )}>
                 {m[0].toUpperCase()}
               </div>
@@ -157,75 +158,71 @@ export default function ProjectDetail() {
             className="brutal-btn"
           >
             <Plus size={18} />
-            NEW_TASK
+            Add Task
           </button>
         </div>
       </div>
 
-      {/* Kanban Board - Grid Celebration */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-1px bg-black border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,0.05)]">
+      {/* Kanban Board */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {columns.map((column) => (
-          <div key={column.status} className="flex flex-col min-h-[600px] bg-[#F0F0F0]">
-            <div className="flex items-center justify-between p-4 bg-white border-b-2 border-black">
+          <div key={column.status} className="flex flex-col min-h-[500px]">
+            <div className="flex items-center justify-between mb-4 px-2">
               <div className="flex items-center gap-3">
-                <span className="font-mono text-[11px] font-black tracking-[0.2em] uppercase italic">
+                <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">
                   {column.label}
                 </span>
-                <span className="font-mono text-[9px] bg-black text-white px-2 py-0.5">
-                  {tasks.filter(t => t.status === column.status).length.toString().padStart(2, '0')}
+                <span className="text-[10px] font-bold text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full">
+                  {tasks.filter(t => t.status === column.status).length}
                 </span>
               </div>
-              <div className="w-2 h-2 border border-black"></div>
             </div>
 
-            <div className="flex-1 space-y-4 p-6">
+            <div className="flex-1 space-y-4 rounded-3xl bg-gray-50/50 p-4 border border-dashed border-gray-100">
               {tasks.filter(t => t.status === column.status).map((task) => (
                 <motion.div
                   layoutId={task.id}
                   key={task.id}
-                  className="group brutal-card p-6 border-black hover:shadow-none"
+                  className="brutal-card p-6 rounded-2xl cursor-pointer"
                 >
                   <div className="flex items-start justify-between mb-4">
                     <span className={cn(
-                      "font-mono text-[8px] font-black px-2 py-1 border border-black uppercase tracking-widest",
-                      task.priority === 'high' ? 'bg-red-500 text-white' :
-                      task.priority === 'medium' ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-500'
+                      "text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider",
+                      task.priority === 'high' ? 'bg-red-50 text-red-500' :
+                      task.priority === 'medium' ? 'bg-blue-50 text-blue-500' : 'bg-gray-50 text-gray-400'
                     )}>
                       {task.priority}
                     </span>
-                    <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <button
-                        onClick={() => handleDeleteTask(task.id)}
-                        className="text-gray-300 hover:text-red-500 transition-colors"
-                      >
-                        <Trash2 size={14} />
-                      </button>
-                    </div>
+                    <button
+                      onClick={() => handleDeleteTask(task.id)}
+                      className="text-gray-200 hover:text-red-500 transition-colors"
+                    >
+                      <Trash2 size={14} />
+                    </button>
                   </div>
 
-                  <h4 className="font-bold text-gray-900 leading-tight uppercase mb-6 tracking-tight">{task.title}</h4>
+                  <h4 className="font-bold text-gray-900 leading-tight mb-4 uppercase text-sm">{task.title}</h4>
 
-                  <div className="pt-4 border-t border-black/5 flex items-center justify-between">
-                    <div className="flex items-center gap-2 font-mono text-[9px] text-gray-400 font-bold">
-                      <Clock size={10} />
-                      <span>{formatDate(task.dueDate).toUpperCase()}</span>
+                  <div className="pt-4 border-t border-gray-50 flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-[10px] text-gray-400 font-medium">
+                      <Clock size={12} />
+                      <span>{formatDate(task.dueDate)}</span>
                     </div>
                     <select
                       value={task.status}
                       onChange={(e) => handleUpdateStatus(task.id, e.target.value as TaskStatus)}
-                      className="font-mono text-[9px] font-black uppercase tracking-tighter bg-transparent border-none p-0 focus:ring-0 cursor-pointer hover:text-[#FF5C00] transition-colors"
+                      className="text-[10px] font-bold text-gray-400 bg-transparent border-none p-0 focus:ring-0 cursor-pointer hover:text-black transition-colors"
                     >
-                      <option value="todo">QUEUE</option>
-                      <option value="in-progress">PROCESS</option>
-                      <option value="done">COMMIT</option>
+                      <option value="todo">To Do</option>
+                      <option value="in-progress">Ongoing</option>
+                      <option value="done">Done</option>
                     </select>
                   </div>
                 </motion.div>
               ))}
-
               {tasks.filter(t => t.status === column.status).length === 0 && (
-                <div className="flex flex-col items-center justify-center h-40 border-2 border-dashed border-gray-300">
-                  <span className="font-mono text-[9px] font-bold text-gray-300 uppercase tracking-widest">STATION_EMPTY</span>
+                <div className="flex items-center justify-center h-32 border-2 border-dashed border-gray-100 rounded-2xl">
+                  <span className="text-[10px] font-bold text-gray-200 uppercase tracking-widest">No tasks</span>
                 </div>
               )}
             </div>
